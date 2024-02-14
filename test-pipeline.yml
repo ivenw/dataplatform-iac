@@ -1,0 +1,16 @@
+trigger:
+  - main
+
+pool:
+  name: Azure Pipelines
+  vmImage: ubuntu-latest
+
+jobs:
+  - job: Terraform_config
+    steps:
+      - bash: terraform fmt -check -diff -recursive
+        displayName: Terraform format lint
+      - bash: terraform validate
+        displayName: Terraform validate lint
+      - bash: terraform init
+        displayName: Intiliaze terraform
